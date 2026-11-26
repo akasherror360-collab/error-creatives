@@ -69,7 +69,7 @@ st.textContent='img.cr{filter:grayscale(1) brightness(.72) contrast(.92);transit
 document.head.appendChild(st);
 var SEL='main img, .work-overlay img';
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('cr-on');io.unobserve(e.target);}});},{threshold:.35});
-function add(im){if(im.dataset.cr||im.closest('.brand,header,footer,.lbox,.vmodal'))return;im.dataset.cr=1;im.classList.add('cr');io.observe(im);}
+var seen=new WeakSet();function add(im){if(seen.has(im)||im.closest('.brand,header,footer,.lbox,.vmodal,.work-cat-detail'))return;seen.add(im);im.classList.remove('cr-on');im.classList.add('cr');io.observe(im);}
 function scan(r){if(r.matches&&r.matches('img'))add(r);(r.querySelectorAll?r.querySelectorAll('img'):[]).forEach(function(i){if(i.closest('main')||i.closest('.work-overlay'))add(i);});}
 scan(document);
 new MutationObserver(function(ms){ms.forEach(function(m){m.addedNodes.forEach(function(n){if(n.nodeType===1)scan(n);});});}).observe(document.body,{childList:true,subtree:true});
