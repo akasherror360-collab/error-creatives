@@ -23,7 +23,7 @@ if(c.querySelector('.collage-ph')){cnt.textContent='Coming soon';}
 else{cnt.textContent=n2+(c.querySelector('.vtile')?(n2===1?' video':' videos'):(n2===1?' design':' designs'));}}
 c.querySelector('.work-cat-cover').addEventListener('click',function(){
 var det=c.querySelector('.work-cat-detail');
-wot.textContent=c.querySelector('.work-cat-title2').textContent;
+wot.textContent=c.querySelector('.work-cat-title2').textContent;wog.classList.toggle('logo-grid',/logo/i.test(wot.textContent));
 wob.textContent=c.querySelector('.work-cat-brief').textContent;
 woc.textContent='Work \u00b7 '+c.querySelector('.work-cat-title2').textContent;
 var dg=det.querySelector('.work-grid');wog.innerHTML=dg?dg.innerHTML:det.innerHTML;
