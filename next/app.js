@@ -99,7 +99,7 @@ function closeC(c){c.classList.remove('open');}
 var fine=window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches;
 cards.forEach(function(c){
 if(fine){c.addEventListener('mouseenter',function(){openC(c);});c.addEventListener('mouseleave',function(){closeC(c);});}
-c.addEventListener('focusin',function(){openC(c);});
+c.addEventListener('focusin',function(){try{if(c.matches(':focus-visible'))openC(c);}catch(e){}});
 c.addEventListener('click',function(e){if(e.target.closest('.svc-all'))return;if(c.classList.contains('open')&&!fine)closeC(c);else openC(c);});
 c.addEventListener('keydown',function(e){if(e.key==='Escape')closeC(c);});});
 if('requestIdleCallback' in window)requestIdleCallback(load);else setTimeout(load,2500);
